@@ -1,0 +1,1288 @@
+/* =========================================================
+   IGNOU Compass — "The Enchanted Compendium" theme
+   A wizarding-academy reskin: midnight ink, aged parchment,
+   engraved gold, and a wax-sealed sense of ceremony.
+   Palette is drawn straight from the site's own confetti
+   burst (#a9761f gold / #7a2e3b maroon / #1c2541 ink) so the
+   "save my courses" celebration always matches the page.
+   JS, markup and links are untouched — only presentation.
+   ========================================================= */
+
+/* Fonts (Cinzel Decorative / Cinzel / EB Garamond) are loaded via the
+   preconnected <link> in index.html's <head> for faster first paint. */
+
+:root {
+  /* -- core palette (kept in sync with app.js confetti) -- */
+  --ink: #1c2541;
+  --ink-deep: #0e1329;
+  --ink-soft: #454f6e;
+  --gold: #a9761f;
+  --gold-bright: #d9ac4c;
+  --gold-pale: #f0d99a;
+  --gold-tint: rgba(169, 118, 31, 0.14);
+  --maroon: #7a2e3b;
+  --maroon-deep: #4a1119;
+  --maroon-tint: rgba(122, 46, 59, 0.12);
+
+  /* -- parchment surfaces -- */
+  --parchment: #f2e6c4;
+  --parchment-deep: #e7d6a3;
+  --panel: #faf2da;
+  --line: rgba(28, 20, 8, 0.22);
+  --line-strong: rgba(28, 20, 8, 0.38);
+
+  --radius-panel: 4px;
+  --radius-pill: 999px;
+
+  --texture-grain: url("./assets/parchment-texture.svg");
+  --texture-stars: url("./assets/starfield.svg");
+  --ornament-corner: url("./assets/corner-flourish.svg");
+  --ornament-seal: url("./assets/wax-seal.svg");
+  --ornament-compass: url("./assets/compass-rose.svg");
+  --ornament-sparkle: url("./assets/sparkle.svg");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "EB Garamond", "Source Serif 4", serif;
+  font-size: 1.09rem;
+  background-color: var(--ink-deep);
+  background-image:
+    radial-gradient(ellipse at 20% -10%, rgba(169, 118, 31, 0.16), transparent 42%),
+    radial-gradient(ellipse at 88% 6%, rgba(122, 46, 59, 0.22), transparent 38%),
+    var(--texture-stars);
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, 300px 300px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink-deep);
+}
+
+.page-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding-bottom: 130px;
+}
+
+/* ---------------------------------------------------------
+   Header — an engraved sign hung against the night
+   --------------------------------------------------------- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 26px 4px 22px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 1.12rem;
+  letter-spacing: 0.02em;
+  color: var(--gold-pale);
+}
+
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 60%, var(--maroon-deep) 130%);
+  color: var(--ink-deep);
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  box-shadow:
+    0 0 0 2px var(--ink-deep),
+    0 0 0 3px var(--gold-tint),
+    0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.site-nav a {
+  padding: 9px 14px;
+  border-radius: 3px;
+  font-family: "Cinzel", serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant: small-caps;
+  color: var(--gold-pale);
+  opacity: 0.82;
+  border: 1px solid transparent;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  background: rgba(169, 118, 31, 0.14);
+  border-color: rgba(169, 118, 31, 0.4);
+  color: var(--gold-bright);
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   Typography
+   --------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Cinzel Decorative", "Source Serif 4", serif;
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--gold-pale);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.section h2,
+.section h3,
+.desk-output h3,
+.panel h3 {
+  color: var(--maroon-deep);
+  text-shadow: none;
+}
+
+h1 {
+  max-width: 17ch;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+.section-heading p,
+.footer p,
+.portal-card p,
+.update-card p,
+.resource-link p,
+.profile-subtext,
+.empty-state,
+.form-note,
+.launch-card p,
+.fine-print {
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.section-heading p,
+.footer p {
+  color: rgba(240, 217, 154, 0.72);
+}
+
+/* ---------------------------------------------------------
+   Hero quote — words scrawled on an unfurled scroll
+   --------------------------------------------------------- */
+
+.hero-quote {
+  position: relative;
+  max-width: 54ch;
+  margin: 26px 0 0;
+  padding: 8px 0 8px 30px;
+  border-left: 3px solid var(--gold);
+}
+
+.hero-quote-mark {
+  position: absolute;
+  left: -6px;
+  top: -20px;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 3.4rem;
+  color: var(--gold);
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.hero-quote blockquote {
+  margin: 0;
+}
+
+.hero-quote p {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-style: italic;
+  font-size: 1.32rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--parchment);
+  transition: opacity 220ms ease;
+}
+
+.hero-quote p.is-fading {
+  opacity: 0;
+}
+
+.hero-quote figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.hero-quote figcaption span {
+  font-size: 0.84rem;
+  font-style: italic;
+  color: rgba(240, 217, 154, 0.6);
+}
+
+.quote-next {
+  border: none;
+  background: none;
+  padding: 4px 0;
+  color: var(--gold-bright);
+  font-family: "Cinzel", serif;
+  font-variant: small-caps;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.quote-next:hover,
+.quote-next:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   Save-courses celebration
+   --------------------------------------------------------- */
+
+.save-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(12px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--ink-deep);
+  border: 1px solid var(--gold);
+  color: var(--gold-pale);
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 4px rgba(169, 118, 31, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.save-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.confetti-piece {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 49;
+  animation: confetti-burst 900ms ease-out forwards;
+}
+
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
+  }
+}
+
+@keyframes drift-compass {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece,
+  .magic-field,
+  .cursor-dust {
+    display: none;
+  }
+
+  .hero-quote p,
+  .save-toast,
+  .access-card::after,
+  .hero-copy > * {
+    transition: none;
+    animation: none !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   Ambient magic — drifting gold dust across the page, and a
+   sparkle trail that follows the cursor (spawned by app.js).
+   Both are decorative, aria-hidden, and switched off above
+   for reduced-motion.
+   --------------------------------------------------------- */
+
+.magic-field {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mote {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-pale), var(--gold) 70%, transparent 100%);
+  opacity: 0;
+  animation: mote-drift 7s ease-in-out infinite, mote-twinkle 3.2s ease-in-out infinite;
+}
+
+@keyframes mote-drift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(14px, -26px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes mote-twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.85; }
+}
+
+.cursor-dust {
+  position: fixed;
+  z-index: 60;
+  width: var(--dust-size, 5px);
+  height: var(--dust-size, 5px);
+  margin-left: calc(var(--dust-size, 5px) / -2);
+  margin-top: calc(var(--dust-size, 5px) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-pale), var(--gold) 65%, transparent 100%);
+  pointer-events: none;
+  animation: dust-rise 900ms ease-out forwards;
+}
+
+@keyframes dust-rise {
+  0% {
+    opacity: 0.9;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(0.3);
+  }
+}
+
+/* ---------------------------------------------------------
+   Hero entrance — a single, orchestrated reveal on load,
+   like a page of the compendium turning open.
+   --------------------------------------------------------- */
+
+.hero-copy > * {
+  opacity: 0;
+  animation: hero-reveal 700ms ease-out forwards;
+}
+
+.hero-copy > h1 { animation-delay: 0.05s; }
+.hero-copy > .hero-quote { animation-delay: 0.25s; }
+.hero-copy > .hero-actions { animation-delay: 0.45s; }
+.hero-copy > .app-utility-row { animation-delay: 0.6s; }
+
+@keyframes hero-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.fine-print {
+  font-size: 0.87rem;
+  margin: 14px 0 0;
+}
+
+/* ---------------------------------------------------------
+   Buttons + chips — embossed gold, wax-sealed
+   --------------------------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  font-variant: small-caps;
+  transition: transform 150ms ease, background 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.button-primary {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 70%);
+  color: var(--ink-deep);
+  box-shadow: 0 6px 16px rgba(169, 118, 31, 0.35);
+}
+
+.button-primary:hover {
+  background: linear-gradient(180deg, #e6c060, var(--gold-bright) 70%);
+  box-shadow: 0 8px 20px rgba(169, 118, 31, 0.45);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--gold-pale);
+  border-color: rgba(169, 118, 31, 0.55);
+}
+
+.button-secondary:hover {
+  background: rgba(169, 118, 31, 0.1);
+}
+
+.button-ghost {
+  background: transparent;
+  color: var(--maroon);
+  border: 1px dashed var(--maroon);
+}
+
+.button-ghost:hover {
+  background: var(--maroon-tint);
+}
+
+/* on the dark hero, secondary/ghost text stays legible;
+   inside light parchment panels, restyle those two variants */
+.panel .button-secondary,
+.desk-layout .button-secondary,
+.resource-layout .button-secondary {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.panel .button-secondary:hover,
+.desk-layout .button-secondary:hover,
+.resource-layout .button-secondary:hover {
+  background: rgba(28, 37, 65, 0.05);
+}
+
+.hero-actions,
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.app-utility-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid rgba(169, 118, 31, 0.4);
+  border-radius: var(--radius-pill);
+  background: rgba(169, 118, 31, 0.08);
+  color: var(--gold-pale);
+  font-size: 0.86rem;
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------
+   Hero + the student access card
+   --------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 0.9fr;
+  gap: 30px;
+  align-items: start;
+  padding: 40px 0 20px;
+}
+
+.access-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+  background:
+    linear-gradient(180deg, var(--panel), var(--parchment-deep) 130%);
+  padding: 26px 24px 22px;
+  box-shadow:
+    0 0 0 1px var(--line-strong),
+    0 0 0 6px var(--parchment),
+    0 0 0 7px var(--gold),
+    0 18px 46px rgba(0, 0, 0, 0.45);
+}
+
+.access-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--texture-grain);
+  background-size: 220px 220px;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.access-card::after {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  right: -90px;
+  bottom: -110px;
+  background-image: var(--ornament-compass);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.16;
+  pointer-events: none;
+  animation: drift-compass 90s linear infinite;
+}
+
+.access-card-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.access-card-label {
+  margin: 0;
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--maroon-deep);
+}
+
+.access-card-seal {
+  position: relative;
+  font-family: "Cinzel", serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-variant: small-caps;
+  padding: 6px 12px 6px 30px;
+  border-radius: var(--radius-pill);
+  background: var(--maroon-tint);
+  color: var(--maroon-deep);
+  white-space: nowrap;
+}
+
+.access-card-seal::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: var(--ornament-seal);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.access-card-stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.access-card-stat {
+  padding: 6px 10px;
+  border-left: 1px dashed var(--line-strong);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.access-card-stat:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.access-card-stat strong {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #8a6a1a;
+}
+
+.access-card-stat span {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.3;
+}
+
+.access-card-perforation {
+  position: relative;
+  height: 0;
+  border-top: 1px dashed var(--line-strong);
+  margin: 22px -24px;
+}
+
+.access-card-perforation::before,
+.access-card-perforation::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink-deep);
+  border: 1px solid var(--line-strong);
+}
+
+.access-card-perforation::before {
+  left: -7px;
+}
+
+.access-card-perforation::after {
+  right: -7px;
+}
+
+.access-card-list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.access-card-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.access-card-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  background-image: var(--ornament-sparkle);
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: sepia(1) saturate(3) hue-rotate(-10deg) brightness(0.8);
+}
+
+/* ---------------------------------------------------------
+   Sections
+   --------------------------------------------------------- */
+
+.section {
+  position: relative;
+  padding: 56px 0 8px;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(169, 118, 31, 0.5), transparent);
+}
+
+.section-heading {
+  max-width: 48rem;
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-heading h2::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-image: var(--ornament-sparkle);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.section-heading p {
+  margin: 8px 0 0;
+}
+
+.panel-label {
+  margin: 0 0 12px;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+  font-variant: small-caps;
+  color: var(--maroon-deep);
+}
+
+/* ---------------------------------------------------------
+   Quick links
+   --------------------------------------------------------- */
+
+.launch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.launch-card {
+  position: relative;
+  display: grid;
+  gap: 9px;
+  padding: 22px 20px;
+  border-radius: var(--radius-panel);
+  background: linear-gradient(180deg, var(--panel), var(--parchment) 140%);
+  box-shadow: 0 0 0 1px var(--line), 0 10px 26px rgba(14, 19, 41, 0.35);
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.launch-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-image: var(--ornament-corner);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.85;
+}
+
+.launch-card:hover,
+.launch-card:focus-visible {
+  box-shadow: 0 0 0 1px var(--gold), 0 14px 32px rgba(14, 19, 41, 0.4);
+  transform: translateY(-3px);
+}
+
+.launch-kicker {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-family: "Cinzel", serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.02em;
+  color: var(--maroon-deep);
+  background: var(--maroon-tint);
+}
+
+/* ---------------------------------------------------------
+   Panels (forms, resource shell, cards)
+   --------------------------------------------------------- */
+
+.panel {
+  position: relative;
+  border-radius: var(--radius-panel);
+  background: linear-gradient(180deg, var(--panel), var(--parchment) 150%);
+  box-shadow: 0 0 0 1px var(--line), 0 12px 28px rgba(14, 19, 41, 0.35);
+  padding: 24px;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  background-image: var(--ornament-corner);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.panel::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  background-image: var(--ornament-corner);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  transform: rotate(180deg);
+  pointer-events: none;
+}
+
+.desk-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 20px;
+}
+
+.student-form,
+.resource-shell,
+.resource-results,
+.desk-output,
+.course-list {
+  display: grid;
+  gap: 14px;
+}
+
+.resource-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+  align-items: start;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+}
+
+label span {
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  font-variant: small-caps;
+  color: var(--maroon-deep);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 3px;
+  border: 1px solid var(--line-strong);
+  background: #fffbef;
+  color: var(--ink);
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-tint);
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.profile-card {
+  min-height: 260px;
+}
+
+.profile-header {
+  display: grid;
+  gap: 6px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--line-strong);
+  margin-bottom: 14px;
+}
+
+.profile-header h3 {
+  font-size: 1.5rem;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--gold-tint);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.course-card {
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.4);
+  padding: 15px;
+  display: grid;
+  gap: 9px;
+}
+
+.course-card h4 {
+  margin: 0;
+  font-family: "Cinzel", serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--maroon-deep);
+}
+
+.course-actions,
+.action-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 13px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.86rem;
+  border: 1px solid var(--line-strong);
+  background: #fffbef;
+  color: var(--ink);
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.quick-link:hover,
+.quick-link:focus-visible {
+  border-color: var(--gold);
+  background: var(--gold-tint);
+  color: var(--maroon-deep);
+}
+
+.focus-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.focus-list li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  font-size: 0.94rem;
+}
+
+.focus-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.8em;
+}
+
+/* ---------------------------------------------------------
+   Directory grid
+   --------------------------------------------------------- */
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.updates-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.portal-card,
+.update-card {
+  display: grid;
+  gap: 10px;
+  border-radius: var(--radius-panel);
+  background: linear-gradient(180deg, var(--panel), var(--parchment) 150%);
+  box-shadow: 0 0 0 1px var(--line), 0 10px 22px rgba(14, 19, 41, 0.3);
+  padding: 19px;
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.portal-card:hover,
+.update-card:hover {
+  box-shadow: 0 0 0 1px var(--gold), 0 12px 26px rgba(14, 19, 41, 0.35);
+  transform: translateY(-2px);
+}
+
+.portal-top,
+.resource-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-family: "Cinzel", serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.badge.teal {
+  background: var(--gold-tint);
+  color: #8a6a1a;
+}
+
+.badge.orange {
+  background: var(--maroon-tint);
+  color: var(--maroon-deep);
+}
+
+.resource-form label {
+  flex: 1 1 240px;
+}
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+
+.footer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 36px 0 12px;
+  margin-top: 44px;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(169, 118, 31, 0.5), transparent);
+}
+
+.footer strong {
+  font-family: "Cinzel Decorative", serif;
+  color: var(--gold-pale);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-links a {
+  color: rgba(240, 217, 154, 0.75);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+  font-variant: small-caps;
+}
+
+.footer-links a:hover {
+  color: var(--gold-bright);
+}
+
+/* ---------------------------------------------------------
+   Mobile dock
+   --------------------------------------------------------- */
+
+.mobile-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  z-index: 30;
+  display: none;
+  gap: 6px;
+  transform: translateX(-50%);
+  padding: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--ink-deep);
+  border: 1px solid var(--gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-dock a {
+  padding: 9px 15px;
+  border-radius: var(--radius-pill);
+  font-family: "Cinzel", serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-variant: small-caps;
+  color: var(--gold-pale);
+}
+
+.mobile-dock a:hover {
+  background: rgba(169, 118, 31, 0.18);
+  color: var(--gold-bright);
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .desk-layout,
+  .resource-layout,
+  .launch-grid,
+  .portal-grid,
+  .updates-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 20px, 1000px);
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .site-nav {
+    width: 100%;
+  }
+
+  .site-nav a {
+    flex: 1 1 30%;
+    text-align: center;
+  }
+
+  h1 {
+    max-width: none;
+  }
+
+  .button,
+  .quick-link,
+  .button-install,
+  .status-chip {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .access-card-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .access-card-stat {
+    border-left: none;
+    border-top: 1px dashed var(--line-strong);
+    padding-left: 0;
+    padding-top: 10px;
+  }
+
+  .access-card-stat:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .mobile-dock {
+    display: flex;
+    width: calc(100% - 20px);
+    justify-content: space-between;
+  }
+
+  .mobile-dock a {
+    flex: 1 1 0;
+    text-align: center;
+  }
+}

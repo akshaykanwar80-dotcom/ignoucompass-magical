@@ -1,0 +1,19 @@
+{
+  "name": "IGNOU Compass",
+  "short_name": "IGNOU Compass",
+  "description": "Installable IGNOU student web app for desk setup, fast links, and academic resource search.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f4ee",
+  "theme_color": "#1c2541",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

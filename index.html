@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="IGNOU Compass — a single page of verified official IGNOU links for admissions, assignments, exams, results, and study material, plus a saved course list you can use offline."
+    />
+    <meta name="theme-color" content="#1c2541" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="IGNOU Compass" />
+    <title>IGNOU Compass — official IGNOU links for students</title>
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="magic-field" aria-hidden="true">
+      <span class="mote" style="left:6%; top:12%; animation-delay:0s, 0.2s;"></span>
+      <span class="mote" style="left:18%; top:68%; animation-delay:1.1s, 0.9s;"></span>
+      <span class="mote" style="left:29%; top:32%; animation-delay:2.4s, 0.4s;"></span>
+      <span class="mote" style="left:41%; top:80%; animation-delay:0.6s, 1.6s;"></span>
+      <span class="mote" style="left:53%; top:18%; animation-delay:3.1s, 0.1s;"></span>
+      <span class="mote" style="left:64%; top:58%; animation-delay:1.8s, 1.1s;"></span>
+      <span class="mote" style="left:76%; top:26%; animation-delay:2.9s, 0.7s;"></span>
+      <span class="mote" style="left:85%; top:72%; animation-delay:0.3s, 1.4s;"></span>
+      <span class="mote" style="left:93%; top:40%; animation-delay:1.5s, 0.5s;"></span>
+      <span class="mote" style="left:10%; top:88%; animation-delay:2.1s, 1.2s;"></span>
+      <span class="mote" style="left:47%; top:6%; animation-delay:0.9s, 0.3s;"></span>
+      <span class="mote" style="left:70%; top:90%; animation-delay:3.4s, 0.8s;"></span>
+    </div>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top">
+          <span class="brand-mark">IC</span>
+          <span>IGNOU Compass</span>
+        </a>
+        <nav class="site-nav">
+          <a href="#links">Quick links</a>
+          <a href="#desk">My courses</a>
+          <a href="#material">Find material</a>
+          <a href="#directory">All links</a>
+          <a href="#updates">Stay updated</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="top">
+          <div class="hero-copy">
+            <h1>Every official IGNOU link a student actually needs, in one place.</h1>
+            <figure class="hero-quote" id="hero-quote">
+              <span class="hero-quote-mark" aria-hidden="true">&ldquo;</span>
+              <blockquote>
+                <p id="quote-text"></p>
+              </blockquote>
+              <figcaption>
+                <span>For every IGNOU student, wherever you're studying from</span>
+                <button class="quote-next" id="quote-next" type="button" aria-label="Show another quote">
+                  Next →
+                </button>
+              </figcaption>
+            </figure>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#desk">Save my course list</a>
+              <a class="button button-secondary" href="#directory">Browse all links</a>
+            </div>
+            <div class="app-utility-row">
+              <span class="status-chip">✦ No login. No tracking. Just the links you need.</span>
+            </div>
+          </div>
+
+          <aside class="access-card" aria-label="Site overview">
+            <div class="access-card-top">
+              <p class="access-card-label">Student access card</p>
+              <span class="access-card-seal">Verified links only</span>
+            </div>
+            <div class="access-card-stats">
+              <div class="access-card-stat">
+                <strong id="portal-count">0</strong>
+                <span>Official portals linked</span>
+              </div>
+              <div class="access-card-stat">
+                <strong id="update-count">0</strong>
+                <span>Places to check for notices</span>
+              </div>
+              <div class="access-card-stat">
+                <strong id="saved-course-count">0</strong>
+                <span>Courses saved on this device</span>
+              </div>
+            </div>
+            <div class="access-card-perforation" aria-hidden="true"></div>
+            <ul class="access-card-list">
+              <li>Every link goes to an ignou.ac.in, samarth.edu.in, or egyankosh.ac.in address</li>
+              <li>Your course list is saved in this browser, not on a server</li>
+              <li>The page shell still opens if your connection drops</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="section" id="links">
+          <div class="section-heading">
+            <h2>Quick links</h2>
+            <p>The four things students open most.</p>
+          </div>
+          <div class="launch-grid">
+            <a class="launch-card" href="https://exam.ignou.ac.in/" target="_blank" rel="noreferrer">
+              <span class="launch-kicker">Exams</span>
+              <h3>Submit exam form</h3>
+              <p>Goes to the official term-end examination form portal.</p>
+            </a>
+            <a class="launch-card" href="https://www.ignou.ac.in/studentService/download/assignments" target="_blank" rel="noreferrer">
+              <span class="launch-kicker">Assignments</span>
+              <h3>Download assignments</h3>
+              <p>Official assignment question papers by programme.</p>
+            </a>
+            <a class="launch-card" href="https://termendresult.ignou.ac.in/" target="_blank" rel="noreferrer">
+              <span class="launch-kicker">Results</span>
+              <h3>Check term-end result</h3>
+              <p>Official result lookup by enrolment number.</p>
+            </a>
+            <a class="launch-card" href="https://gradecard.ignou.ac.in/gradecard/" target="_blank" rel="noreferrer">
+              <span class="launch-kicker">Progress</span>
+              <h3>Open grade card</h3>
+              <p>Assignment, theory, and practical status in one view.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="section" id="desk">
+          <div class="section-heading">
+            <h2>Save your courses once</h2>
+            <p>
+              Enter your programme and course codes, and this page builds one-tap search shortcuts for
+              each course. It stays saved in this browser until you clear it — nothing is sent anywhere.
+            </p>
+          </div>
+
+          <div class="desk-layout">
+            <form class="student-form panel" id="student-form">
+              <label>
+                <span>Your name (optional)</span>
+                <input id="student-name" name="studentName" placeholder="Aarav Sharma" />
+              </label>
+              <label>
+                <span>Programme</span>
+                <input id="programme" name="programme" placeholder="BCA, BAG, MCOM, MCA…" required />
+              </label>
+              <label>
+                <span>Semester or year</span>
+                <input id="semester" name="semester" placeholder="Semester 2, Year 1…" required />
+              </label>
+              <label>
+                <span>Study mode</span>
+                <select id="study-mode" name="studyMode">
+                  <option>ODL</option>
+                  <option>Online</option>
+                  <option>Distance + Online</option>
+                </select>
+              </label>
+              <label class="full">
+                <span>Course codes, separated by commas</span>
+                <textarea
+                  id="course-codes"
+                  name="courseCodes"
+                  rows="3"
+                  placeholder="BEVAE-181, BCS-011, BCS-012"
+                  required
+                ></textarea>
+              </label>
+              <div class="form-actions">
+                <button class="button button-primary" type="submit">Save my courses</button>
+                <button class="button button-secondary" type="button" id="load-sample">
+                  Try an example
+                </button>
+                <button class="button button-ghost" type="button" id="clear-desk">
+                  Clear saved data
+                </button>
+              </div>
+              <p class="form-note">Saved in this browser's storage only — clearing your browser data will remove it.</p>
+            </form>
+
+            <div class="desk-output">
+              <article class="panel profile-card" id="profile-card">
+                <p class="empty-state">
+                  Save a course list to see per-course shortcuts for books, assignments, and previous papers.
+                </p>
+              </article>
+              <article class="panel planner-card">
+                <p class="panel-label">Always-on shortcuts</p>
+                <div class="action-grid" id="global-actions"></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="material">
+          <div class="section-heading">
+            <h2>Turn a course code into study links</h2>
+            <p>
+              Type any IGNOU course code to get direct search links into eGyanKosh, the assignment
+              pages, and the previous question paper archive — without typing the search yourself.
+            </p>
+          </div>
+
+          <div class="resource-layout">
+            <div class="resource-shell panel">
+              <div class="resource-form">
+                <label>
+                  <span>Course code</span>
+                  <input id="resource-course-code" placeholder="BCS-011" />
+                </label>
+                <button class="button button-primary" id="resource-search" type="button">
+                  Generate links
+                </button>
+              </div>
+              <div class="resource-results" id="resource-results">
+                <p class="empty-state">No course code entered yet.</p>
+              </div>
+            </div>
+
+            <aside class="panel intel-card">
+              <p class="panel-label">What this searches</p>
+              <ul class="focus-list">
+                <li>eGyanKosh — official study material and blocks</li>
+                <li>ignou.ac.in — assignment pages and notices</li>
+                <li>webservices.ignou.ac.in — previous term-end papers</li>
+              </ul>
+              <p class="fine-print">
+                These are Google site-searches scoped to official IGNOU domains, so results stay on
+                real IGNOU pages rather than third-party sites.
+              </p>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="directory">
+          <div class="section-heading">
+            <h2>Every official portal, in one directory</h2>
+            <p>Bookmark this section — it's the full map of IGNOU's separate portals.</p>
+          </div>
+          <div class="portal-grid" id="portal-grid"></div>
+        </section>
+
+        <section class="section" id="updates">
+          <div class="section-heading">
+            <h2>Where to check for real updates</h2>
+            <p>
+              This page can't safely predict deadlines or notices — IGNOU changes dates often, and
+              anything printed here with a specific date would go stale. Instead, here are the exact
+              official pages where genuine announcements are posted first.
+            </p>
+          </div>
+          <div class="updates-grid" id="updates-grid"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <strong>IGNOU Compass</strong>
+          <p>
+            A student-made directory of official IGNOU links — built on the belief that where you
+            start shouldn't decide how far you go. Not affiliated with IGNOU.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="https://www.ignou.ac.in/" target="_blank" rel="noreferrer">IGNOU home</a>
+          <a href="https://www.ignou.ac.in/studentZone/index" target="_blank" rel="noreferrer">Student Zone</a>
+          <a href="https://egyankosh.ac.in/" target="_blank" rel="noreferrer">eGyanKosh</a>
+        </div>
+      </footer>
+
+      <nav class="mobile-dock" aria-label="Quick app navigation">
+        <a href="#links">Links</a>
+        <a href="#desk">Courses</a>
+        <a href="#material">Material</a>
+        <a href="#updates">Updates</a>
+      </nav>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
